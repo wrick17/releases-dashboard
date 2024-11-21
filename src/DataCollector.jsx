@@ -29,7 +29,7 @@ export const DataCollector = ({ onCollect }) => {
 				Welcome to Release Radar
 			</h1>
 			<form
-				className="flex flex-col items-center justify-center bg-white dark:bg-gray-900 rounded-md p-4 shadow-lg w-full max-w-lg"
+				className="flex flex-col items-center justify-center bg-white dark:bg-gray-900 rounded-md p-4 shadow-lg w-full max-w-3xl"
 				onSubmit={onSubmit}
 			>
 				<h2 className="mb-8 text-lg">
@@ -51,7 +51,7 @@ export const DataCollector = ({ onCollect }) => {
 
 				<label htmlFor="github-repo-links">
 					<span className="text-gray-500 dark:text-gray-400">
-						GitHub Repo Links (one each line if multiple)
+						GitHub Repo Links (one each line)
 					</span>
 				</label>
 				<textarea
@@ -59,6 +59,7 @@ export const DataCollector = ({ onCollect }) => {
 					id="github-repo-links"
 					className="block w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-8 text-center"
 					placeholder="https://github.com/owner/repo"
+          rows={10}
 					defaultValue={repos
 						?.map((repo) => `https://github.com/${repo}`)
 						?.join("\n")}
