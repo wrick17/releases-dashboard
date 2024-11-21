@@ -16,8 +16,13 @@ const fetchReleases = async (repo, token) => {
 };
 
 export const fetchAll = async (config) => {
-  const repoReleases = await Promise.all(
-    config?.repos?.map((repo) => fetchReleases(repo, config?.token)),
-  );
-  return repoReleases;
+  try {
+    const repoReleases = (await Promise.allSettled(
+      config?.repos?.map((repo) => fetchReleases(repo, config?.token)),
+    )).map(resp => resp.value).filter(Boolean);
+    console.log(repoReleases);
+    return repoReleases;
+  } catch (_err) {
+    return []
+  }
 };
