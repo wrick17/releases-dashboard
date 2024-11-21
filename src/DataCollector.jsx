@@ -60,8 +60,8 @@ export const DataCollector = ({ onCollect }) => {
 					className="block w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-8 text-center"
 					placeholder="https://github.com/owner/repo"
 					defaultValue={repos
-						.map((repo) => `https://github.com/${repo}`)
-						.join("\n")}
+						?.map((repo) => `https://github.com/${repo}`)
+						?.join("\n")}
 				/>
 
 				<button
