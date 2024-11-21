@@ -14,6 +14,9 @@ export default defineConfig({
 		},
 	},
 	output: {
-	    assetPrefix: '/releases-dashboard/',
+		assetPrefix: "/releases-dashboard/",
+	},
+	html: {
+		favicon: "./src/assets/favicon.png",
 	},
 });

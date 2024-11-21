@@ -69,7 +69,7 @@ const App = () => {
 					</button>
 					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
-						onClick={() => fetchData(config)}
+						onClick={() => fetchData()}
 						className="py-2 px-4 rounded-md bg-violet-800 text-white"
 					>
 						Refresh!
@@ -78,17 +78,17 @@ const App = () => {
 			</header>
 
 			<div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden dark:bg-gray-950 dark:text-white pt-4 pb-8 px-4">
-				<div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-4">
-					{!fetching ? (
-						data.map((repo) => <Repo {...repo} key={repo.name} />)
-					) : (
-						<div className="flex flex-col items-center justify-center">
-							<h1 className="text-xl font-bold text-black dark:text-white">
-								Fetching Tags...
-							</h1>
-						</div>
-					)}
-				</div>
+				{!fetching ? (
+					<div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-4">
+						{data.map((repo) => (
+							<Repo {...repo} key={repo.name} />
+						))}
+					</div>
+				) : (
+					<div className="flex flex-col items-center justify-center flex-1 w-full h-full">
+						<span class="loader" />
+					</div>
+				)}
 			</div>
 		</>
 	);
