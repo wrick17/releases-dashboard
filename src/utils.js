@@ -37,8 +37,8 @@ export function formatDate(inputDate) {
 
 export const getConfig = () => {
   const token = localStorage.token;
-  const repos = JSON.parse(localStorage.repos);
   if (token) {
+    const repos = JSON.parse(localStorage.repos || "[]");
     return { token, repos };
   }
   return false;
