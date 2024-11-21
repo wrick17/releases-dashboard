@@ -13,4 +13,7 @@ export default defineConfig({
 			},
 		},
 	},
+	output: {
+	    assetPrefix: '/releases-dashboard/',
+	},
 });
