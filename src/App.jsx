@@ -31,7 +31,7 @@ const App = () => {
 		<>
 			<header className="flex justify-between items-center py-4 px-4 bg-gray-100 dark:bg-gray-900 sticky top-0 z-50">
 				<h1 className="text-xl font-bold text-black dark:text-white">
-					Tag Center
+					Release Radar
 				</h1>
 				<button
 					onClick={() => fetchData()}

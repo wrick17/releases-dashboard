@@ -10,17 +10,17 @@ export const Modal = ({ name, body }) => {
 	return (
 		<>
 			<button
-				className="hidden group-hover:inline-block text-xs ml-2 py-1 px-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
+				className="cursor-pointer hidden group-hover:inline-block text-xs ml-2 py-1 px-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
 				onClick={() => setShow(true)}
 			>
 				Details
 			</button>
 			{show ? (
 				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-					<div className="bg-white dark:bg-gray-900 h-full w-full p-4 rounded-lg">
+					<div className="bg-white dark:bg-gray-900 h-full w-full p-4 rounded-lg overflow-y-auto">
 						<button
 							onClick={() => setShow(false)}
-							className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none cursor-pointer"
+							className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none cursor-pointer border-2 border-gray-400 dark:border-gray-600 rounded-full p-1 bg-white dark:bg-gray-900"
 						>
 							<svg
 								className="w-6 h-6"

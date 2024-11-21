@@ -9,18 +9,24 @@ export function formatDate(inputDate) {
 	const diffInSeconds = Math.floor((now - dateObject) / 1000);
 
 	let relative;
-
+	// add weeks, months, and years
 	if (diffInSeconds < 60) {
-		relative = `${diffInSeconds} ${diffInSeconds === 1 ? "second" : "seconds"} ago`;
+		relative = `${diffInSeconds} ${diffInSeconds === 1 ? "sec" : "sec"} ago`;
 	} else if (diffInSeconds < 3600) {
 		const diffInMinutes = Math.floor(diffInSeconds / 60);
-		relative = `${diffInMinutes} ${diffInMinutes === 1 ? "minute" : "minutes"} ago`;
+		relative = `${diffInMinutes} ${diffInMinutes === 1 ? "min" : "mins"} ago`;
 	} else if (diffInSeconds < 86400) {
 		const diffInHours = Math.floor(diffInSeconds / 3600);
 		relative = `${diffInHours} ${diffInHours === 1 ? "hour" : "hours"} ago`;
-	} else {
+	} else if (diffInSeconds < 2592000) {
 		const diffInDays = Math.floor(diffInSeconds / 86400);
 		relative = `${diffInDays} ${diffInDays === 1 ? "day" : "days"} ago`;
+	} else if (diffInSeconds < 31536000) {
+		const diffInMonths = Math.floor(diffInSeconds / 2592000);
+		relative = `${diffInMonths} ${diffInMonths === 1 ? "month" : "months"} ago`;
+	} else if (diffInSeconds >= 31536000) {
+		const diffInYears = Math.floor(diffInSeconds / 31536000);
+		relative = `${diffInYears} ${diffInYears === 1 ? "year" : "years"} ago`;
 	}
 
 	return {

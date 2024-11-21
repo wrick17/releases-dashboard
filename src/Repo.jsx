@@ -23,30 +23,31 @@ export const Repo = ({ name, data }) => {
 					return (
 						<li
 							key={tag_name}
-							className="cursor-pointer whitespace-nowrap px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-900 flex items-center group"
+							className="px-2 pr-1 py-1 hover:bg-gray-100 dark:hover:bg-gray-900 flex items-center group"
 						>
-							<span className="group text-xs mr-2 py-1 inline-block w-[80px] bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-md text-center">
+							<span className="group text-xs mr-2 py-1 inline-block w-[90px] bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-md text-center flex-shrink-0">
 								<span className="group-hover:hidden">
 									{formatDate(created_at).relative}
 								</span>
+
 								<span className="hidden group-hover:inline">
 									{formatDate(created_at).date}
 								</span>
 							</span>
 
-							<span className="text-md flex flex-1">
-								<a
-									href={`https://github.com/${name}/releases/tag/${tag_name}`}
-									target="_blank"
-									rel="noreferrer"
-									className="flex-1"
-								>
-									<span>{tag_name}</span>
-								</a>
-								<Modal body={body} name={name} />
-							</span>
+							<a
+								href={`https://github.com/${name}/releases/tag/${tag_name}`}
+								target="_blank"
+								rel="noreferrer"
+								className="cursor-pointer flex-1 text-ellipsis whitespace-nowrap overflow-hidden min-w-0"
+							>
+								{tag_name}
+							</a>
+
+							<Modal body={body} name={name} />
+
 							<button
-								className="hidden group-hover:inline-block text-xs ml-2 py-1 px-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
+								className="cursor-pointer hidden group-hover:inline-block text-xs ml-2 py-1 px-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
 								onClick={() => copyToClipboard(tag_name)}
 							>
 								Copy
