@@ -20,7 +20,7 @@ export const Modal = ({ name, body }) => {
 					<div className="bg-white dark:bg-gray-900 h-full w-full p-4 rounded-lg">
 						<button
 							onClick={() => setShow(false)}
-							className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none"
+							className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none cursor-pointer"
 						>
 							<svg
 								className="w-6 h-6"
