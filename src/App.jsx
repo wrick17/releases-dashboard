@@ -12,10 +12,13 @@ const App = () => {
 	const [fetching, setIsFetching] = useState(false);
 	const [showDataCollector, setShowDataCollector] = useState(false);
 
-	const onCollect = () => {
+	const onCollect = (newConfig) => {
+		setConfig(newConfig);
 		setShowDataCollector(false);
-		setConfig(getConfig());
-		fetchData();
+		setIsFetching(true);
+		fetchAll(newConfig)
+			.then((data) => setData(data))
+			.finally(() => setIsFetching(false));
 	};
 
 	const fetchData = useCallback(

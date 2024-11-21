@@ -5,8 +5,10 @@ export const DataCollector = ({ onCollect }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		const token = document.getElementById("token").value;
-		const repoLinks = document.getElementById("github-repo-links").value;
+		const token = document.getElementById("token").value?.trim();
+		const repoLinks = document
+			.getElementById("github-repo-links")
+			.value?.trim();
 
 		localStorage.setItem("token", token);
 
@@ -18,7 +20,7 @@ export const DataCollector = ({ onCollect }) => {
 
 		localStorage.setItem("repos", JSON.stringify(repoArray));
 
-		onCollect();
+		onCollect({ token, repos: repoArray });
 	};
 
 	const { token, repos } = getConfig();
@@ -59,7 +61,7 @@ export const DataCollector = ({ onCollect }) => {
 					id="github-repo-links"
 					className="block w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-8 text-center"
 					placeholder="https://github.com/owner/repo"
-          rows={10}
+					rows={10}
 					defaultValue={repos
 						?.map((repo) => `https://github.com/${repo}`)
 						?.join("\n")}
