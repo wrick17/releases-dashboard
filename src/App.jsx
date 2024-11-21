@@ -15,6 +15,7 @@ const App = () => {
 	const onCollect = () => {
 		setShowDataCollector(false);
 		setConfig(getConfig());
+		fetchData();
 	};
 
 	const fetchData = useCallback(
