@@ -1,31 +1,57 @@
 import { useCallback, useEffect, useState } from "react";
 import { Repo } from "./Repo";
-import { fetchAll } from './api';
+import { fetchAll } from "./api";
 
 import "./App.css";
+import { getConfig } from "./utils";
+import { DataCollector } from "./DataCollector";
 
 const App = () => {
+	const [config, setConfig] = useState(getConfig());
 	const [data, setData] = useState([]);
 	const [fetching, setIsFetching] = useState(false);
+	const [showDataCollector, setShowDataCollector] = useState(false);
+
+	const onCollect = () => {
+		setShowDataCollector(false);
+		setConfig(getConfig());
+	};
 
 	const fetchData = useCallback(
 		async (fromHook) => {
 			if (fromHook) {
 				if (fetching || data.length) {
-					return;
+					return () => {};
 				}
 			}
 			setIsFetching(true);
-			fetchAll()
+			fetchAll(config)
 				.then((data) => setData(data))
 				.finally(() => setIsFetching(false));
 		},
-		[data, fetching],
+		[data, fetching, config],
 	);
 
+	const editConfig = () => {
+		setShowDataCollector(true);
+	};
+
 	useEffect(() => {
-		fetchData(true);
-	}, [fetchData]);
+		const config = getConfig();
+		if (!config) {
+			setShowDataCollector(true);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (config?.token) {
+			fetchData(true);
+		}
+	}, [config?.token, fetchData]);
+
+	if (showDataCollector) {
+		return <DataCollector onCollect={onCollect} />;
+	}
 
 	return (
 		<>
@@ -33,12 +59,22 @@ const App = () => {
 				<h1 className="text-xl font-bold text-black dark:text-white">
 					Release Radar
 				</h1>
-				<button
-					onClick={() => fetchData()}
-					className="py-2 px-4 rounded-md bg-violet-800 text-white"
-				>
-					Refresh!
-				</button>
+				<div>
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						className="py-2 px-4 rounded-md bg-violet-800 text-white mr-2"
+						onClick={() => editConfig()}
+					>
+						Edit Config
+					</button>
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						onClick={() => fetchData(config)}
+						className="py-2 px-4 rounded-md bg-violet-800 text-white"
+					>
+						Refresh!
+					</button>
+				</div>
 			</header>
 
 			<div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden dark:bg-gray-950 dark:text-white pt-4 pb-8 px-4">

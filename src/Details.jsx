@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Markdown from "react-markdown";
 
-export const Modal = ({ name, body }) => {
+export const Details = ({ name, body }) => {
 	const [show, setShow] = useState(false);
 	const formattedBody = body
 		.split(/\n/g)

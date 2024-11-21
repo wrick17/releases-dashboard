@@ -1,23 +1,23 @@
-import { Octokit } from "octokit";
-import { repos } from './config';
+import { Octokit } from 'octokit';
 
-const octokit = new Octokit({
-	auth: process.env.PUBLIC_TOKEN,
-});
-
-const fetchReleases = async (repo) => {
-	const { data } = await octokit.request(
-		`GET /repos/${repo}/releases?per_page=10`,
-		{
-			headers: {
-				"If-None-Match": "",
-			},
-		},
-	);
-	return { name: repo, data };
+const fetchReleases = async (repo, token) => {
+  const octokit = new Octokit({
+    auth: token,
+  });
+  const { data } = await octokit.request(
+    `GET /repos/${repo}/releases?per_page=10`,
+    {
+      headers: {
+        'If-None-Match': '',
+      },
+    },
+  );
+  return { name: repo, data };
 };
 
-export const fetchAll = async () => {
-	const repoReleases = await Promise.all(repos.map(fetchReleases));
-	return repoReleases;
+export const fetchAll = async (config) => {
+  const repoReleases = await Promise.all(
+    config?.repos?.map((repo) => fetchReleases(repo, config?.token)),
+  );
+  return repoReleases;
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import copy from "copy-to-clipboard";
 import { formatDate } from "./utils";
-import { Modal } from "./Modal";
+import { Details } from "./Details";
 
 export const Repo = ({ name, data }) => {
 	const copyToClipboard = copy;
@@ -44,7 +44,7 @@ export const Repo = ({ name, data }) => {
 								{tag_name}
 							</a>
 
-							<Modal body={body} name={name} />
+							<Details body={body} name={name} />
 
 							<button
 								className="cursor-pointer hidden group-hover:inline-block text-xs ml-2 py-1 px-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
